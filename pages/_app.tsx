@@ -1,11 +1,11 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useState } from "react";
-import { Theme, Navbar, Button, Swap } from "react-daisyui";
+import { Theme, Navbar, Button, Swap, SwapProps } from "react-daisyui";
 import { IconSunHigh } from "@tabler/icons";
 import { IconMoon } from "@tabler/icons";
 
-const swapProps = {
+const swapProps: SwapProps = {
   rotate: true,
   onElement: <IconMoon />,
   offElement: <IconSunHigh />,

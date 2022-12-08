@@ -1,11 +1,17 @@
 import Head from "next/head";
 import { useState } from "react";
 import { Button } from "react-daisyui";
+import { useRouter } from "next/router";
 
 import FilterThoughts from "../components/FilterThoughts";
 
 export default function Home() {
   const [filterValue, setFilterValue] = useState("");
+  const router = useRouter();
+
+  const handleOnSubmitThought = () => {
+    router.push("/submit");
+  };
 
   const handleOnFilter = (value: string) => {
     if (filterValue === value) return;
@@ -25,9 +31,7 @@ export default function Home() {
         <Button
           color="primary"
           className="btn-md"
-          onClick={() => {
-            alert("click");
-          }}
+          onClick={handleOnSubmitThought}
         >
           Submit a Thought
         </Button>

@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { Input, Select, Textarea, Button } from "react-daisyui";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import Label from "../../components/Label";
 import Thought from "../../interfaces/Thought";

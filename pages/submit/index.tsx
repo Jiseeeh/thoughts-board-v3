@@ -1,14 +1,25 @@
 import React from "react";
 import Head from "next/head";
 import { Input, Select, Textarea, Button } from "react-daisyui";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import Label from "../../components/Label";
+import Thought from "../../interfaces/Thought";
 
 const SubmitThought: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Thought>();
+
+  const onSubmit: SubmitHandler<Thought> = (data) => console.log(data);
+
   return (
     <form
       className="flex flex-col gap-3 mx-3 md:mx-40"
       aria-label="Thought form"
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Head>
         <title>Submit a Thought</title>
@@ -17,7 +28,11 @@ const SubmitThought: React.FC = () => {
       </Head>
       <h1 className="font-bold text-xl md:text-4xl">Submit a Thought</h1>
       <Label>Tag</Label>
-      <Select className="max-w-xs" aria-label="Thought tag">
+      <Select
+        className="max-w-xs"
+        aria-label="Thought tag"
+        {...register("tag")}
+      >
         <Select.Option value={"default"} disabled>
           Select Tag
         </Select.Option>
@@ -38,6 +53,8 @@ const SubmitThought: React.FC = () => {
         autoComplete="off"
         autoCorrect="off"
         aria-label="Thought sender name"
+        defaultValue="Anonymous"
+        {...register("ownerName")}
       />
       <Label>Content</Label>
       <Textarea
@@ -45,7 +62,11 @@ const SubmitThought: React.FC = () => {
         rows={5}
         title="Thought content"
         placeholder="Thought content"
+        {...register("content", { required: true })}
       />
+      {errors.content && (
+        <span className="text-warning">Content is required!</span>
+      )}
       <Button className="max-w-xs" color="primary">
         Submit
       </Button>

@@ -3,16 +3,28 @@ import Head from "next/head";
 import { Input, Select, Textarea, Button } from "react-daisyui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 
 import Label from "../../components/Label";
 import Thought from "../../interfaces/Thought";
+
+const schema = z.object({
+  ownerName: z
+    .string()
+    .min(1, { message: "Name must be at least 1 character" })
+    .max(12, { message: "Name must not be greater than 12 characters" })
+    .default("Anonymous"),
+  content: z
+    .string()
+    .min(20, { message: "Content must have at least 20 character" }),
+});
 
 const SubmitThought: React.FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Thought>();
+  } = useForm<Thought>({ resolver: zodResolver(schema) });
 
   const onSubmit: SubmitHandler<Thought> = (data) => console.log(data);
 
@@ -57,6 +69,9 @@ const SubmitThought: React.FC = () => {
         defaultValue="Anonymous"
         {...register("ownerName")}
       />
+      {errors.ownerName && (
+        <span className="text-warning">{errors.ownerName.message}</span>
+      )}
       <Label>Content</Label>
       <Textarea
         className="max-w-2xl"
@@ -66,7 +81,7 @@ const SubmitThought: React.FC = () => {
         {...register("content", { required: true })}
       />
       {errors.content && (
-        <span className="text-warning">Content is required!</span>
+        <span className="text-warning">{errors.content.message}</span>
       )}
       <Button className="max-w-xs" color="primary">
         Submit

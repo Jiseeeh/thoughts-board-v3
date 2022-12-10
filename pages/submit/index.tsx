@@ -30,7 +30,7 @@ const SubmitThought: React.FC = () => {
 
   return (
     <form
-      className="flex flex-col gap-3 mx-3 md:mx-40"
+      className="flex flex-col gap-3 mx-3 mb-3 md:mx-40"
       aria-label="Thought form"
       onSubmit={handleSubmit(onSubmit)}
     >

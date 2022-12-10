@@ -17,6 +17,7 @@ const schema = z.object({
   content: z
     .string()
     .min(20, { message: "Content must have at least 20 character" }),
+  tag: z.string(),
 });
 
 const SubmitThought: React.FC = () => {
@@ -41,7 +42,11 @@ const SubmitThought: React.FC = () => {
       </Head>
       <h1 className="font-bold text-xl md:text-4xl">Submit a Thought</h1>
       <Label>Tag</Label>
-      <select className="select w-full max-w-xs" {...register("tag")}>
+      <select
+        className="select w-full max-w-xs"
+        defaultValue={"Random"}
+        {...register("tag")}
+      >
         <option disabled>Select Tag</option>
         <option value={"Life"}>Life</option>
         <option value={"Tech"}>Tech</option>

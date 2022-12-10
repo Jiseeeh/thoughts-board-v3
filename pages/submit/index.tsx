@@ -41,20 +41,14 @@ const SubmitThought: React.FC = () => {
       </Head>
       <h1 className="font-bold text-xl md:text-4xl">Submit a Thought</h1>
       <Label>Tag</Label>
-      <Select
-        className="max-w-xs"
-        aria-label="Thought tag"
-        {...register("tag")}
-      >
-        <Select.Option value={"default"} disabled>
-          Select Tag
-        </Select.Option>
-        <Select.Option value={"Life"}>Life</Select.Option>
-        <Select.Option value={"Tech"}>Tech</Select.Option>
-        <Select.Option value={"Random"}>Random</Select.Option>
-        <Select.Option value={"Rant"}>Rant</Select.Option>
-        <Select.Option value={"Truth"}>Truth</Select.Option>
-      </Select>
+      <select className="select w-full max-w-xs" {...register("tag")}>
+        <option disabled>Select Tag</option>
+        <option value={"Life"}>Life</option>
+        <option value={"Tech"}>Tech</option>
+        <option value={"Random"}>Random</option>
+        <option value={"Rant"}>Rant</option>
+        <option value={"Truth"}>Truth</option>
+      </select>
       <Label>
         Name <span className="font-bold">(Optional)</span>
       </Label>

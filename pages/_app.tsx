@@ -5,7 +5,7 @@ import { Theme, Navbar, Button, Swap, SwapProps, Footer } from "react-daisyui";
 import {
   IconSunHigh,
   IconMoon,
-  IconBadges,
+  IconHash,
   IconFlower,
   IconBrandGithub,
   IconBrandLinkedin,
@@ -47,16 +47,18 @@ export default function App({ Component, pageProps }: AppProps) {
         {/* global footer */}
         <Footer className="p-5 mt-auto bg-neutral text-neutral-content">
           {/* TODO: Add links */}
-          <section>
-            <IconBadges size={100} />
+          <section className="h-full flex items-center">
             <section className="flex items-center">
+              <IconHash size={100} />
               <Button>
                 <IconBrandGithub />
               </Button>
               <Button>
                 <IconBrandLinkedin />
               </Button>
-              <span className="font-bold">&#8211; Jiseeeh</span>
+              <span className="font-bold">
+                Made by &lt;Jiseeeh&nbsp;&#47;&gt;{" "}
+              </span>
             </section>
           </section>
           <section>

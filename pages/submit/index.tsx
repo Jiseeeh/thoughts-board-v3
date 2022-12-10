@@ -45,6 +45,7 @@ const SubmitThought: React.FC = () => {
       <select
         className="select w-full max-w-xs"
         defaultValue={"Random"}
+        title="Thought tag"
         {...register("tag")}
       >
         <option disabled>Select Tag</option>

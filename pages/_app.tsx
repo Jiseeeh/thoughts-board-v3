@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Theme dataTheme={`${isDarkMode ? "dark" : "light"}`}>
       <main className="min-h-screen">
+        {/* global navbar */}
         <Navbar className="flex justify-between">
           <section className="md:ml-auto">
             <Button className="text-xl normal-case" color="ghost">
@@ -31,7 +32,9 @@ export default function App({ Component, pageProps }: AppProps) {
             ></Swap>
           </section>
         </Navbar>
+        {/* main content */}
         <Component {...pageProps} />
+        {/* global footer */}
       </main>
     </Theme>
   );

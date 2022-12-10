@@ -17,7 +17,7 @@ const schema = z.object({
   content: z
     .string()
     .min(20, { message: "Content must have at least 20 character" }),
-  tag: z.string(),
+  tag: z.string().default("Random"),
 });
 
 const SubmitThought: React.FC = () => {

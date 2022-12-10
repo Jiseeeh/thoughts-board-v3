@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { useState } from "react";
 import { Theme, Navbar, Button, Swap, SwapProps, Footer } from "react-daisyui";
+import { Toaster } from "react-hot-toast";
 import {
   IconSunHigh,
   IconMoon,
@@ -87,6 +88,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </article>
           </section>
         </Footer>
+        <Toaster />
       </main>
     </Theme>
   );

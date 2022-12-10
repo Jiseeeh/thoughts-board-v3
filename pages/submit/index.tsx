@@ -80,17 +80,6 @@ const SubmitThought: React.FC = () => {
       <Button className="max-w-xs" color="primary">
         Submit
       </Button>
-      {/* Related Thoughts */}
-      <section>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio minima
-          officia, esse ut aspernatur voluptatem suscipit architecto commodi at.
-          Necessitatibus nulla eveniet distinctio nam dignissimos blanditiis,
-          incidunt molestias laboriosam. Unde voluptates nulla esse nam,
-          repellendus beatae cupiditate ab recusandae. Laboriosam beatae,
-          blanditiis facere porro expedita illum? Laboriosam iure cum in.
-        </p>
-      </section>
     </form>
   );
 };

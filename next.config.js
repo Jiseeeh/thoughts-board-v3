@@ -5,6 +5,9 @@ const nextConfig = {
   env: {
     API_KEY: process.env.API_KEY,
   },
+  experimental: {
+    allowMiddlewareResponseBody: true,
+  },
 };
 
 module.exports = nextConfig;

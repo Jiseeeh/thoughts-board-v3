@@ -1,5 +1,7 @@
 import React from "react";
 import Head from "next/head";
+import axios from "../../lib/axios";
+import toast from "react-hot-toast";
 import { Input, Select, Textarea, Button } from "react-daisyui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,7 +29,21 @@ const SubmitThought: React.FC = () => {
     formState: { errors },
   } = useForm<Thought>({ resolver: zodResolver(schema) });
 
-  const onSubmit: SubmitHandler<Thought> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Thought> = async (data) => {
+    const toastId = toast.loading("Creating your thought..");
+
+    const response = await axios.post("/api/submit-thought", data);
+
+    toast.dismiss(toastId);
+
+    if (response.data.success) {
+      toast.success("Thought created!");
+      console.log(response.data);
+      return;
+    }
+
+    toast.error("Something went wrong.");
+  };
 
   return (
     <form

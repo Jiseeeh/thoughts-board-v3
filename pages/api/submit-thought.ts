@@ -6,16 +6,25 @@ export default async function submitThought(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const { ownerName, tag, content } = req.body;
+
   try {
-    const thought = await prisma.thought.create({
+    const createdThought = await prisma.thought.create({
       data: {
-        tag: "Tech",
-        content: "I will create a new js framework",
+        ownerName: ownerName || "Anonymous",
+        tag,
+        content,
       },
     });
 
-    res.json(thought);
+    res.json({
+      success: true,
+      createdThought,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Something went wrong!", error });
+    res.json({
+      success: false,
+      error,
+    });
   }
 }

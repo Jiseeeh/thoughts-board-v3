@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import axios from "../../lib/axios";
 import toast from "react-hot-toast";
@@ -22,6 +22,7 @@ const schema = z.object({
 });
 
 const SubmitThought: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -30,10 +31,12 @@ const SubmitThought: React.FC = () => {
 
   const onSubmit: SubmitHandler<Thought> = async (data) => {
     const toastId = toast.loading("Creating your thought..");
+    setIsLoading(true);
 
     const response = await axios.post("/api/submit-thought", data);
 
     toast.dismiss(toastId);
+    setIsLoading(false);
 
     if (response.data.success) {
       toast.success("Thought created!");
@@ -98,7 +101,10 @@ const SubmitThought: React.FC = () => {
       {errors.content && (
         <span className="text-warning">{errors.content.message}</span>
       )}
-      <Button className="max-w-xs" color="primary">
+      <Button
+        className={`max-w-xs ${isLoading ? "loading" : ""}`}
+        color="primary"
+      >
         Submit
       </Button>
     </form>

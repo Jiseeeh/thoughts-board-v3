@@ -13,7 +13,6 @@ import Thought from "../../interfaces/Thought";
 const schema = z.object({
   ownerName: z
     .string()
-    .min(1, { message: "Name must be at least 1 character" })
     .max(12, { message: "Name must not be greater than 12 characters" })
     .default("Anonymous"),
   content: z

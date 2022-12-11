@@ -1,10 +1,4 @@
-enum Tags {
-  LIFE = "Life",
-  TECH = "Tech",
-  RANDOM = "Random",
-  RANT = "Rant",
-  TRUTH = "Truth",
-}
+import Tags from "./Tags";
 
 export default interface Thought {
   id?: string;

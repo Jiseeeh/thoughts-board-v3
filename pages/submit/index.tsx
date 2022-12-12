@@ -103,7 +103,7 @@ const SubmitThought: React.FC = () => {
       )}
       <Button
         className={`max-w-xs ${isLoading ? "loading" : ""}`}
-        color="primary"
+        color="secondary"
       >
         Submit
       </Button>

@@ -37,6 +37,7 @@ export default function Home() {
         </Button>
         <FilterThoughts onFilter={handleOnFilter} />
       </section>
+      <section className="grid gap-3 md:grid-cols-2 lg:grid-cols-4"></section>
     </section>
   );
 }

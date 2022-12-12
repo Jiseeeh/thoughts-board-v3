@@ -50,7 +50,6 @@ export default function App({ Component, pageProps }: AppProps) {
           {/* TODO: Add links */}
           <section className="h-full flex items-center">
             <section className="flex items-center">
-              <IconHash size={100} />
               <Button>
                 <IconBrandGithub />
               </Button>

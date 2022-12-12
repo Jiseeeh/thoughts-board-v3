@@ -29,7 +29,7 @@ export default function Home() {
       </Head>
       <section className="flex justify-end mr-3">
         <Button
-          color="primary"
+          color="secondary"
           className="btn-md"
           onClick={handleOnSubmitThought}
         >

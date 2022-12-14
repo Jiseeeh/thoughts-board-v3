@@ -12,8 +12,10 @@ export default async function getAllThoughts(
     },
   });
 
-  if (thoughts.length === 0)
-    res.status(500).json({ success: false, message: "No thoughts available." });
+  if (thoughts.length === 0) {
+    res.json({ success: false, message: "No thoughts available." });
+    return;
+  }
 
-  res.json({success:true,thoughts});
+  res.json({ success: true, thoughts });
 }

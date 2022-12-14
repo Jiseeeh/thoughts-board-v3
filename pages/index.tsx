@@ -1,12 +1,44 @@
 import Head from "next/head";
+import axios from "../lib/axios";
+import useSWR from "swr";
+import moment from "moment";
+import { CSSProperties } from "react";
+import { HashLoader } from "react-spinners";
 import { useState } from "react";
 import { Button } from "react-daisyui";
 import { useRouter } from "next/router";
 
 import FilterThoughts from "../components/FilterThoughts";
+import Thought from "../components/Thought";
+
+const fetcher = async (url: string) => {
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    throw new Error("Could'nt fetch thoughts!");
+  }
+};
+
+const loaderCssOverride: CSSProperties = {
+  position: "absolute",
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: "10rem",
+  margin: "auto",
+};
 
 export default function Home() {
   const [filterValue, setFilterValue] = useState("");
+  const {
+    data: thoughts,
+    error,
+    isLoading,
+  } = useSWR("/api/thoughts", fetcher, {
+    refreshInterval: 1000,
+  });
+
   const router = useRouter();
 
   const handleOnSubmitThought = () => {
@@ -37,7 +69,23 @@ export default function Home() {
         </Button>
         <FilterThoughts onFilter={handleOnFilter} />
       </section>
-      <section className="grid gap-3 md:grid-cols-2 lg:grid-cols-4"></section>
+      <section className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        {thoughts &&
+          thoughts.map((thought: Thought) => (
+            <Thought
+              key={thought.id}
+              id={thought.id}
+              createdAt={moment(thought.createdAt).fromNow()}
+              views={thought.views}
+              ownerName={thought.ownerName}
+              tag={thought.tag}
+              content={thought.content}
+            />
+          ))}
+      </section>
+      {isLoading && (
+        <HashLoader color="#36d7b7" cssOverride={loaderCssOverride} size={70} />
+      )}
     </section>
   );
 }

@@ -6,15 +6,14 @@ export default async function getAllThoughts(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  try {
-    const thoughts = await prisma.thought.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
+  const thoughts = await prisma.thought.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
-    res.json(thoughts);
-  } catch (error) {
-    res.status(500).json("Something went wrong!");
-  }
+  if (thoughts.length === 0)
+    res.status(500).json({ success: false, message: "No thoughts available." });
+
+  res.json({success:true,thoughts});
 }

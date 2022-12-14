@@ -3,7 +3,7 @@ import axios from "../lib/axios";
 import useSWR from "swr";
 import moment from "moment";
 import { HashLoader } from "react-spinners";
-import { useState, CSSProperties, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Button } from "react-daisyui";
 import { useRouter } from "next/router";
 
@@ -17,16 +17,6 @@ const fetcher = async (url: string) => {
   if (data.success) return data.thoughts;
 
   throw new Error(data.message);
-};
-
-// TODO: do not make absolute
-const loaderCssOverride: CSSProperties = {
-  position: "absolute",
-  left: 0,
-  right: 0,
-  top: 0,
-  bottom: "10rem",
-  margin: "auto",
 };
 
 const Thoughts404 = lazy(() => import("../components/Thoughts404"));
@@ -91,11 +81,9 @@ export default function Home() {
           </section>
         )}
         {isLoading && (
-          <HashLoader
-            color="#36d7b7"
-            cssOverride={loaderCssOverride}
-            size={70}
-          />
+          <section className="mb-3 flex justify-center">
+            <HashLoader color="#36d7b7" size={70} />
+          </section>
         )}
       </section>
     </Suspense>

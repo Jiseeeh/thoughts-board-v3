@@ -3,7 +3,7 @@ import axios from "../lib/axios";
 import useSWR from "swr";
 import moment from "moment";
 import { HashLoader } from "react-spinners";
-import { useState, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Button } from "react-daisyui";
 import { useRouter } from "next/router";
 
@@ -22,12 +22,9 @@ const fetcher = async (url: string) => {
 const Thoughts404 = lazy(() => import("../components/Thoughts404"));
 
 export default function Home() {
-  const [filterValue, setFilterValue] = useState("");
-  const {
-    data: thoughts,
-    error,
-    isLoading,
-  } = useSWR("/api/thoughts", fetcher, {
+  const [filterValue, setFilterValue] = useState("All");
+  const [thoughts, setThoughts] = useState<JSX.Element[]>([]);
+  const { data, error, isLoading } = useSWR("/api/thoughts", fetcher, {
     refreshInterval: 1000,
   });
 
@@ -43,6 +40,31 @@ export default function Home() {
     setFilterValue(value);
     alert(value);
   };
+
+  useEffect(() => {
+    if (data) {
+      setThoughts(
+        data
+          .filter((thought: Thought) => {
+            if (filterValue === "All") return true;
+
+            if (filterValue === thought.tag) return true;
+            return false;
+          })
+          .map((thought: Thought) => (
+            <Thought
+              key={thought.id}
+              id={thought.id}
+              createdAt={moment(thought.createdAt).fromNow()}
+              views={thought.views}
+              ownerName={thought.ownerName}
+              tag={thought.tag}
+              content={thought.content}
+            />
+          ))
+      );
+    }
+  }, [data, filterValue]);
 
   return (
     <Suspense>
@@ -62,22 +84,14 @@ export default function Home() {
           </Button>
           <FilterThoughts onFilter={handleOnFilter} />
         </section>
-        {error ? (
-          <Thoughts404 />
+        {error && <Thoughts404 />}
+        {thoughts.length === 0 ? (
+          <section className="bg-red-500">
+            <h1>ITS EMPTY HERE HUH?</h1>
+          </section>
         ) : (
           <section className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-            {thoughts &&
-              thoughts.map((thought: Thought) => (
-                <Thought
-                  key={thought.id}
-                  id={thought.id}
-                  createdAt={moment(thought.createdAt).fromNow()}
-                  views={thought.views}
-                  ownerName={thought.ownerName}
-                  tag={thought.tag}
-                  content={thought.content}
-                />
-              ))}
+            {thoughts}
           </section>
         )}
         {isLoading && (

@@ -38,7 +38,6 @@ export default function Home() {
     if (filterValue === value) return;
 
     setFilterValue(value);
-    alert(value);
   };
 
   useEffect(() => {

@@ -1,12 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Theme, Navbar, Button, Swap, SwapProps, Footer } from "react-daisyui";
 import { Toaster } from "react-hot-toast";
 import {
   IconSunHigh,
   IconMoon,
-  IconHash,
   IconFlower,
   IconBrandGithub,
   IconBrandLinkedin,
@@ -24,6 +24,7 @@ const swapProps: SwapProps = {
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const router = useRouter();
 
   return (
     <Theme dataTheme={`${isDarkMode ? "dark" : "light"}`}>
@@ -50,10 +51,18 @@ export default function App({ Component, pageProps }: AppProps) {
           {/* TODO: Add links */}
           <section className="h-full flex items-center">
             <section className="flex items-center">
-              <Button>
+              <Button
+                onClick={() =>
+                  router.push("https://github.com/Jiseeeh/thoughts-board-v3")
+                }
+              >
                 <IconBrandGithub />
               </Button>
-              <Button>
+              <Button
+                onClick={() =>
+                  router.push("https://www.linkedin.com/in/john-carlo-camara/")
+                }
+              >
                 <IconBrandLinkedin />
               </Button>
               <span className="font-bold">

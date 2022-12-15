@@ -1,9 +1,10 @@
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import axios from "../lib/axios";
 import useSWR from "swr";
 import moment from "moment";
 import { HashLoader } from "react-spinners";
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-daisyui";
 import { useRouter } from "next/router";
 
@@ -19,8 +20,8 @@ const fetcher = async (url: string) => {
   throw new Error(data.message);
 };
 
-const Thoughts404 = lazy(() => import("../components/Thoughts404"));
-const Filter404 = lazy(() => import("../components/Filter404"));
+const Thoughts404 = dynamic(() => import("../components/Thoughts404"));
+const Filter404 = dynamic(() => import("../components/Filter404"));
 
 export default function Home() {
   const [filterValue, setFilterValue] = useState("All");
@@ -67,7 +68,7 @@ export default function Home() {
   }, [data, filterValue]);
 
   return (
-    <Suspense>
+    <>
       <section>
         <Head>
           <title>Thoughts Board</title>
@@ -99,6 +100,6 @@ export default function Home() {
           </section>
         )}
       </section>
-    </Suspense>
+    </>
   );
 }

@@ -20,6 +20,7 @@ const fetcher = async (url: string) => {
 };
 
 const Thoughts404 = lazy(() => import("../components/Thoughts404"));
+const Filter404 = lazy(() => import("../components/Filter404"));
 
 export default function Home() {
   const [filterValue, setFilterValue] = useState("All");
@@ -83,11 +84,10 @@ export default function Home() {
           </Button>
           <FilterThoughts onFilter={handleOnFilter} />
         </section>
-        {error && <Thoughts404 />}
-        {thoughts.length === 0 ? (
-          <section className="bg-red-500">
-            <h1>ITS EMPTY HERE HUH?</h1>
-          </section>
+        {error ? (
+          <Thoughts404 />
+        ) : data && thoughts.length === 0 ? (
+          <Filter404 />
         ) : (
           <section className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {thoughts}

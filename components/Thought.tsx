@@ -20,7 +20,7 @@ const Thought: React.FC<Thought> = ({
     router.push(`/thoughts/id/${id}`);
 
     // increment thought views
-    await axios.patch(`/api/thoughts/patch/${id}`);
+    await axios.patch(`/api/${id}`);
   };
 
   return (

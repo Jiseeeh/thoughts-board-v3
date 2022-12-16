@@ -14,7 +14,7 @@ const fetcher = async (url: string) => {
 const SingleThought: React.FC = (props) => {
   const router = useRouter();
   const { data, error, isLoading } = useSWR(
-    `/api/thoughts/get/${router.query.thoughtId}`,
+    `/api/getThought/${router.query.thoughtId}`,
     fetcher
   );
 

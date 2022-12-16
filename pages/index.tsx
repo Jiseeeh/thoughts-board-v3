@@ -26,7 +26,7 @@ const Filter404 = dynamic(() => import("../components/Filter404"));
 export default function Home() {
   const [filterValue, setFilterValue] = useState("All");
   const [thoughts, setThoughts] = useState<JSX.Element[]>([]);
-  const { data, error, isLoading } = useSWR("/api/thoughts/get", fetcher, {
+  const { data, error, isLoading } = useSWR("/api/getThoughts", fetcher, {
     refreshInterval: 1000,
   });
 

@@ -33,7 +33,10 @@ const SubmitThought: React.FC = () => {
     const toastId = toast.loading("Creating your thought..");
     setIsLoading(true);
 
-    const response = await axios.post("/api/submit-thought", data);
+    const response = await axios.post(
+      "/api/thoughts/post/submit-thought",
+      data
+    );
 
     toast.dismiss(toastId);
     setIsLoading(false);

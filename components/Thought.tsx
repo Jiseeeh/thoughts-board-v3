@@ -1,5 +1,6 @@
 import React from "react";
 import { IconEye } from "@tabler/icons";
+import { useRouter } from "next/router";
 
 import Thought from "../interfaces/Thought";
 import generateTag from "../helper/generateTag";
@@ -12,13 +13,18 @@ const Thought: React.FC<Thought> = ({
   tag,
   content,
 }) => {
+  const router = useRouter();
+  const handleOnThoughtClick = () => {
+    router.push(`/thoughts/id/${id}`);
+  };
+
   return (
     <article className="p-3 m-3 flex flex-col bg-primary rounded max-w-sm">
       <section className="flex ">
         <span className="italic">{createdAt}</span>
         <span className="ml-auto font-bold">{ownerName}</span>
       </section>
-      <section>
+      <section className="cursor-pointer" onClick={handleOnThoughtClick}>
         <p className="line-clamp-5">{content}</p>
       </section>
       <section className="mt-auto flex">

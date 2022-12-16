@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import axios from "../lib/axios";
 import useSWR from "swr";
 import moment from "moment";
-import { HashLoader } from "react-spinners";
+import Loading from "../components/Loading";
 import { useState, useEffect } from "react";
 import { Button } from "react-daisyui";
 import { useRouter } from "next/router";
@@ -94,11 +94,7 @@ export default function Home() {
             {thoughts}
           </section>
         )}
-        {isLoading && (
-          <section className="mb-3 flex justify-center">
-            <HashLoader color="#36d7b7" size={70} />
-          </section>
-        )}
+        {isLoading && <Loading size={70} />}
       </section>
     </>
   );

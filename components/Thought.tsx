@@ -1,31 +1,8 @@
 import React from "react";
-import {
-  IconEye,
-  IconTrees,
-  IconRobot,
-  IconBrain,
-  IconSpeakerphone,
-  IconScale,
-} from "@tabler/icons";
+import { IconEye } from "@tabler/icons";
 
 import Thought from "../interfaces/Thought";
-import Tags from "../interfaces/Tags";
-import Tag from "./Tag";
-
-const generateTag = (tag: Tags) => {
-  switch (tag) {
-    case Tags.LIFE:
-      return <Tag icon={<IconTrees />} color="secondary" content={tag} />;
-    case Tags.TECH:
-      return <Tag icon={<IconRobot />} color="accent" content={tag} />;
-    case Tags.RANDOM:
-      return <Tag icon={<IconBrain />} color="info" content={tag} />;
-    case Tags.RANT:
-      return <Tag icon={<IconSpeakerphone />} color="error" content={tag} />;
-    case Tags.TRUTH:
-      return <Tag icon={<IconScale />} color="success" content={tag} />;
-  }
-};
+import generateTag from "../helper/generateTag";
 
 const Thought: React.FC<Thought> = ({
   id,

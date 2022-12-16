@@ -1,6 +1,7 @@
 import React from "react";
 import { IconEye } from "@tabler/icons";
 import { useRouter } from "next/router";
+import axios from "../lib/axios";
 
 import Thought from "../interfaces/Thought";
 import generateTag from "../helper/generateTag";
@@ -14,8 +15,12 @@ const Thought: React.FC<Thought> = ({
   content,
 }) => {
   const router = useRouter();
-  const handleOnThoughtClick = () => {
+
+  const handleOnThoughtClick = async () => {
     router.push(`/thoughts/id/${id}`);
+
+    // increment thought views
+    await axios.patch(`/api/thoughts/${id}`);
   };
 
   return (

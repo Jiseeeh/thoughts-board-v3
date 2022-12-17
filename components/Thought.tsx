@@ -1,10 +1,10 @@
 import React from "react";
 import { IconEye } from "@tabler/icons";
 import { useRouter } from "next/router";
-import axios from "../lib/axios";
 
 import IThought from "../interfaces/IThought";
 import generateTag from "../helper/generateTag";
+import axios from "../lib/axios";
 
 const Thought: React.FC<IThought> = ({
   id,

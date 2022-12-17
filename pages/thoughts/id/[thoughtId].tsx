@@ -3,8 +3,10 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import axios from "../../../lib/axios";
 
-const fetcher = async (url: string) => {
-  const response = await axios.get(url);
+const fetcher = async (url: string, body: string) => {
+  const response = await axios.get(url, {
+    data: body,
+  });
   const data = response.data;
 
   if (data.success) return data.thought;
@@ -14,8 +16,8 @@ const fetcher = async (url: string) => {
 const SingleThought: React.FC = (props) => {
   const router = useRouter();
   const { data, error, isLoading } = useSWR(
-    `/api/getThought/${router.query.thoughtId}`,
-    fetcher
+    ["/api/getThought", String(router.query.thoughtId)],
+    ([url, body]) => fetcher(url, body)
   );
 
   console.log(data);

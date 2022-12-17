@@ -6,12 +6,12 @@ export default async function getThought(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { thoughtId } = req.query;
+  const { thoughtId } = req.body;
 
   try {
     const thought = await prisma.thought.findFirstOrThrow({
       where: {
-        id: String(thoughtId),
+        id: thoughtId,
       },
     });
 

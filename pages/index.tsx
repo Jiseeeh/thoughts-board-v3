@@ -1,15 +1,15 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import axios from "@lib/axios";
 import useSWR from "swr";
 import moment from "moment";
-import Loading from "@components/Loading";
 import { useState, useEffect } from "react";
 import { Button } from "react-daisyui";
 import { useRouter } from "next/router";
 
 import FilterThoughts from "@components/FilterThoughts";
 import Thought from "@components/Thought";
+import Loading from "@components/Loading";
+import axios from "@lib/axios";
 
 const fetcher = async (url: string) => {
   const response = await axios.get(url);

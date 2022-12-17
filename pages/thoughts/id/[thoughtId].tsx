@@ -1,8 +1,9 @@
 import React from "react";
 import useSWR from "swr";
-import axios from "@lib/axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
+
+import axios from "@lib/axios";
 
 const fetcher = async (url: string, body: string) => {
   const response = await axios.get(url, {

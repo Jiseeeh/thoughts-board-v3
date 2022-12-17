@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import axios from "@lib/axios";
 import toast from "react-hot-toast";
 import * as z from "zod";
 import { Input, Select, Textarea, Button } from "react-daisyui";
@@ -9,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import Label from "@components/Label";
 import Thought from "@interfaces/Thought";
+import axios from "@lib/axios";
 
 const schema = z.object({
   ownerName: z

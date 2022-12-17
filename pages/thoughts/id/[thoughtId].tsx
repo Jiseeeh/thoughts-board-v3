@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import axios from "../../../lib/axios";
+import axios from "@lib/axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import axios from "../../lib/axios";
+import axios from "@lib/axios";
 import toast from "react-hot-toast";
+import * as z from "zod";
 import { Input, Select, Textarea, Button } from "react-daisyui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 
-import Label from "../../components/Label";
-import Thought from "../../interfaces/Thought";
+import Label from "@components/Label";
+import Thought from "@interfaces/Thought";
 
 const schema = z.object({
   ownerName: z

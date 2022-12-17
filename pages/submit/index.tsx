@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Label from "@components/Label";
-import Thought from "@interfaces/Thought";
+import IThought from "@interfaces/IThought";
 import axios from "@lib/axios";
 
 const schema = z.object({
@@ -27,9 +27,9 @@ const SubmitThought: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Thought>({ resolver: zodResolver(schema) });
+  } = useForm<IThought>({ resolver: zodResolver(schema) });
 
-  const onSubmit: SubmitHandler<Thought> = async (data) => {
+  const onSubmit: SubmitHandler<IThought> = async (data) => {
     const toastId = toast.loading("Creating your thought..");
     setIsLoading(true);
 

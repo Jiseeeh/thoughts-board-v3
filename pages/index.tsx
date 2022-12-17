@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import FilterThoughts from "@components/FilterThoughts";
 import Thought from "@components/Thought";
 import Loading from "@components/Loading";
+import IThought from "@interfaces/IThought";
 import axios from "@lib/axios";
 
 const fetcher = async (url: string) => {
@@ -46,13 +47,13 @@ export default function Home() {
     if (data) {
       setThoughts(
         data
-          .filter((thought: Thought) => {
+          .filter((thought: IThought) => {
             if (filterValue === "All") return true;
 
             if (filterValue === thought.tag) return true;
             return false;
           })
-          .map((thought: Thought) => (
+          .map((thought: IThought) => (
             <Thought
               key={thought.id}
               id={thought.id}

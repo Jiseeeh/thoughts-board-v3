@@ -1,6 +1,6 @@
-import Tags from "./Tags";
+import Tags from "./ITags";
 
-export default interface Thought {
+export default interface IThought {
   id?: string;
   createdAt?: string;
   views: 0 | number;

@@ -1,7 +1,8 @@
 import React from "react";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import axios from "../../../lib/axios";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 const fetcher = async (url: string, body: string) => {
   const response = await axios.get(url, {
@@ -21,7 +22,14 @@ const SingleThought: React.FC = (props) => {
   );
 
   console.log(data);
-  return <section>HEY</section>;
+  return (
+    <>
+      <Head>
+        <title>Thought</title>
+      </Head>
+      <section>HEY</section>
+    </>
+  );
 };
 
 export default SingleThought;

@@ -53,8 +53,9 @@ const SingleThought: React.FC = () => {
               <span className="self-center">{generateTag(data.tag)}</span>
               {/* name & created at */}
               <section className="flex">
-                <span>By {data.ownerName}&nbsp;</span>
-                <span className="flex">
+                By
+                <span className="font-bold">&nbsp;{data.ownerName}&nbsp;</span>
+                <span className="flex italic">
                   <IconClock /> {moment(data.createdAt).fromNow()}
                 </span>
               </section>

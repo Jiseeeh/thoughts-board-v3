@@ -15,7 +15,7 @@ export default async function getThought(
       },
     });
 
-    res.status(200).json({ success: true, thought });
+    res.status(200).json({ success: true, content: thought });
   } catch (error) {
     res.status(500).json({ success: false, error });
   }

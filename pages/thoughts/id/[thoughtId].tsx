@@ -2,6 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import Head from "next/head";
 import moment from "moment";
+import dynamic from "next/dynamic";
 import { IconClock } from "@tabler/icons";
 import { useRouter } from "next/router";
 
@@ -23,6 +24,9 @@ const fetcher = async (url: string, thoughtId: string) => {
   throw new Error(data.error);
 };
 
+// asynchronously import 404 component
+const Thoughts404 = dynamic(() => import("@components/Thoughts404"));
+
 const SingleThought: React.FC = () => {
   const router = useRouter();
   const {
@@ -39,25 +43,29 @@ const SingleThought: React.FC = () => {
       <Head>
         <title>Thought</title>
       </Head>
-      {data && (
-        <article className="p-10 flex flex-col items-center">
-          <section className="mb-3 flex flex-col">
-            {/* tag */}
-            <span className="self-center">{generateTag(data.tag)}</span>
-            {/* name & created at */}
-            <section className="flex">
-              <span>By {data.ownerName}&nbsp;</span>
-              <span className="flex">
-                <IconClock /> {moment(data.createdAt).fromNow()}
-              </span>
+      {error ? (
+        <Thoughts404 title="Unable to fetch thought." />
+      ) : (
+        data && (
+          <article className="p-10 flex flex-col items-center">
+            <section className="mb-3 flex flex-col">
+              {/* tag */}
+              <span className="self-center">{generateTag(data.tag)}</span>
+              {/* name & created at */}
+              <section className="flex">
+                <span>By {data.ownerName}&nbsp;</span>
+                <span className="flex">
+                  <IconClock /> {moment(data.createdAt).fromNow()}
+                </span>
+              </section>
             </section>
-          </section>
-          {/* content */}
-          <section className="max-w-3xl leading-7">
-            <p>{data.content}</p>
-          </section>
-          {isLoading && <Loading size={100} />}
-        </article>
+            {/* content */}
+            <section className="max-w-3xl leading-7">
+              <p>{data.content}</p>
+            </section>
+            {isLoading && <Loading size={100} />}
+          </article>
+        )
       )}
     </>
   );

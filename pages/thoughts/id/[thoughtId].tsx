@@ -8,8 +8,9 @@ import { useRouter } from "next/router";
 
 import IThought from "@interfaces/IThought";
 import generateTag from "@helper/generateTag";
-import Loading from "@components/Loading";
 import fetcher from "@helper/fetcher";
+import Loading from "@components/Loading";
+import RelatedThoughts from "@components/RelatedThoughts";
 
 // asynchronously import 404 component
 const Thoughts404 = dynamic(() => import("@components/Thoughts404"));
@@ -51,6 +52,12 @@ const SingleThought: React.FC = () => {
             <section className="max-w-3xl text-justify leading-7">
               <p>{data.content}</p>
             </section>
+            {/* Related Thoughts */}
+            <RelatedThoughts
+              excludedThoughtId={String(data.id)}
+              relatedThoughtsToTake={4}
+              thoughtTag={data.tag}
+            />
           </article>
         )
       )}

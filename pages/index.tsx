@@ -87,7 +87,7 @@ export default function Home() {
           <FilterThoughts onFilter={handleOnFilter} />
         </section>
         {error ? (
-          <Thoughts404 />
+          <Thoughts404 title="Couldn't find thoughts" />
         ) : data && thoughts.length === 0 ? (
           <Filter404 />
         ) : (

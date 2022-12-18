@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import axios from "@lib/axios";
 import IThought from "@interfaces/IThought";
 import generateTag from "@helper/generateTag";
+import Loading from "@components/Loading";
 
 const fetcher = async (url: string, thoughtId: string) => {
   const response = await axios.get(url, {
@@ -38,6 +39,7 @@ const SingleThought: React.FC = () => {
       <Head>
         <title>Thought</title>
       </Head>
+      {isLoading && <Loading size={130} />}
       {data && (
         <article className="p-10 flex flex-col items-center">
           <section className="mb-3 flex flex-col">

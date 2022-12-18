@@ -64,10 +64,10 @@ const SingleThought: React.FC = () => {
             <section className="max-w-3xl text-justify leading-7">
               <p>{data.content}</p>
             </section>
-            {isLoading && <Loading size={100} />}
           </article>
         )
       )}
+      {isLoading && <Loading size={100} />}
     </>
   );
 };

@@ -39,7 +39,6 @@ const SingleThought: React.FC = () => {
       <Head>
         <title>Thought</title>
       </Head>
-      {isLoading && <Loading size={130} />}
       {data && (
         <article className="p-10 flex flex-col items-center">
           <section className="mb-3 flex flex-col">
@@ -57,6 +56,7 @@ const SingleThought: React.FC = () => {
           <section className="max-w-3xl leading-7">
             <p>{data.content}</p>
           </section>
+          {isLoading && <Loading size={100} />}
         </article>
       )}
     </>

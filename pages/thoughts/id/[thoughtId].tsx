@@ -22,7 +22,7 @@ const SingleThought: React.FC = () => {
     isLoading,
   }: { data: IThought; error: any; isLoading: boolean } = useSWR(
     ["/api/getThought", String(router.query.thoughtId)],
-    ([url, body]) => fetcher(url, body)
+    ([url, thoughtId]) => fetcher(url, thoughtId)
   );
 
   return (

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .relatedThoughtsHeading {
+    @apply mt-10 font-bold text-xl md:text-2xl;
+  }
+}

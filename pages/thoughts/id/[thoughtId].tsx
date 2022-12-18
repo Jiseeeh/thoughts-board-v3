@@ -20,7 +20,7 @@ const fetcher = async (url: string, thoughtId: string) => {
   const data = response.data;
 
   if (data.success) return data.thought;
-  return new Error(data.error);
+  throw new Error(data.error);
 };
 
 const SingleThought: React.FC = () => {

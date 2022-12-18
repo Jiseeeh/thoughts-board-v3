@@ -6,23 +6,10 @@ import dynamic from "next/dynamic";
 import { IconClock } from "@tabler/icons";
 import { useRouter } from "next/router";
 
-import axios from "@lib/axios";
 import IThought from "@interfaces/IThought";
 import generateTag from "@helper/generateTag";
 import Loading from "@components/Loading";
-
-const fetcher = async (url: string, thoughtId: string) => {
-  const response = await axios.get(url, {
-    params: {
-      thoughtId,
-    },
-  });
-
-  const data = response.data;
-
-  if (data.success) return data.thought;
-  throw new Error(data.error);
-};
+import fetcher from "@helper/fetcher";
 
 // asynchronously import 404 component
 const Thoughts404 = dynamic(() => import("@components/Thoughts404"));

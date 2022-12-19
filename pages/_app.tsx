@@ -1,10 +1,12 @@
 import "../styles/globals.css";
+import ScrollToTop from "react-scroll-to-top";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Theme, Navbar, Button, Swap, SwapProps, Footer } from "react-daisyui";
 import { Toaster } from "react-hot-toast";
 import {
+  IconArrowUp,
   IconSunHigh,
   IconMoon,
   IconFlower,
@@ -104,6 +106,15 @@ export default function App({ Component, pageProps }: AppProps) {
           </section>
         </Footer>
         <Toaster />
+        <ScrollToTop
+          smooth
+          component={<IconArrowUp />}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
       </main>
     </Theme>
   );

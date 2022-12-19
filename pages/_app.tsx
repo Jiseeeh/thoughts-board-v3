@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Theme dataTheme={`${isDarkMode ? "dark" : "light"}`}>
-      <main className="min-h-screen flex flex-col">
+      <main className="min-h-screen font-NunitoSans flex flex-col ">
         {/* global navbar */}
         <Navbar className="flex justify-between">
           <section className="md:ml-auto">

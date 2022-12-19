@@ -5,7 +5,7 @@ const Filter404: React.FC = () => {
   return (
     <section className="relative h-96 md:h-screen">
       <h1 className="pt-5 text-center font-bold text-2xl md:text-4xl">
-        There's always more to see.
+        There&apos;s always more to see.
       </h1>
       <Image
         src="/filter404.svg"

@@ -56,7 +56,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         {/* global footer */}
         <Footer className="p-5 mt-auto bg-neutral text-neutral-content">
-          {/* TODO: Add links */}
           <section className="h-full flex items-center">
             <section className="flex items-center">
               <Button

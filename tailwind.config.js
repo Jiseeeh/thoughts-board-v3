@@ -35,7 +35,12 @@ module.exports = {
     ],
   },
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        AlegreyaSans: ["Alegreya Sans SC", "sans-serif"],
+        NunitoSans: ["Nunito Sans", "sans-serif"],
+      },
+    },
   },
   plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],
 };

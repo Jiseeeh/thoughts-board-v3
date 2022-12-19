@@ -29,7 +29,7 @@ const Thought: React.FC<IThought> = ({
         <span className="italic">{createdAt}</span>
         <span className="ml-auto font-bold">{ownerName}</span>
       </section>
-      <section className="cursor-pointer" onClick={handleOnThoughtClick}>
+      <section className="mb-5 cursor-pointer" onClick={handleOnThoughtClick}>
         <p className="line-clamp-5">{content}</p>
       </section>
       <section className="mt-auto flex">

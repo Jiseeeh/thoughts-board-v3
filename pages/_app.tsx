@@ -26,13 +26,21 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const router = useRouter();
 
+  const handleOnNavbarButtonClick = () => {
+    if (router.pathname !== "/") router.push("/");
+  };
+
   return (
     <Theme dataTheme={`${isDarkMode ? "dark" : "light"}`}>
       <main className="min-h-screen flex flex-col">
         {/* global navbar */}
         <Navbar className="flex justify-between">
           <section className="md:ml-auto">
-            <Button className="text-xl normal-case" color="ghost">
+            <Button
+              className="text-xl normal-case"
+              color="ghost"
+              onClick={handleOnNavbarButtonClick}
+            >
               Thoughts Board
             </Button>
           </section>

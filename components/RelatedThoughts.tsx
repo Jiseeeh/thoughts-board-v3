@@ -26,6 +26,7 @@ const RelatedThoughts: React.FC<RelatedThoughtsProps> = ({
 
   // TODO: extract to a custom hook
   useEffect(() => {
+    console.log("effect ran");
     if (data) {
       setRelatedThoughts(
         data
@@ -44,7 +45,7 @@ const RelatedThoughts: React.FC<RelatedThoughtsProps> = ({
           ))
       );
     }
-  }, [data]);
+  }, [data, relatedThoughtsToTake, thoughtTag]);
 
   return (
     <>

@@ -27,7 +27,7 @@ const Thought: React.FC<IThought> = ({
     <article className="p-3 m-3 flex flex-col bg-primary rounded max-w-sm">
       <section className="flex ">
         <span className="italic">{createdAt}</span>
-        <span className="ml-auto font-bold">{ownerName}</span>
+        <span className="ml-auto font-AlegreyaSans font-bold">{ownerName}</span>
       </section>
       <section className="mb-5 cursor-pointer" onClick={handleOnThoughtClick}>
         <p className="line-clamp-5">{content}</p>

@@ -42,7 +42,9 @@ const SingleThought: React.FC = () => {
               {/* name & created at */}
               <section className="flex">
                 By
-                <span className="font-bold">&nbsp;{data.ownerName}&nbsp;</span>
+                <span className="font-AlegreyaSans font-bold">
+                  &nbsp;{data.ownerName}&nbsp;
+                </span>
                 <time className="flex italic" dateTime={data.createdAt}>
                   <IconClock /> {moment(data.createdAt).fromNow()}
                 </time>

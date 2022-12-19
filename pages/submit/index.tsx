@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import toast from "react-hot-toast";
 import * as z from "zod";
+import { useRouter } from "next/router";
 import { Input, Select, Textarea, Button } from "react-daisyui";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +24,7 @@ const schema = z.object({
 
 const SubmitThought: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -40,7 +42,10 @@ const SubmitThought: React.FC = () => {
 
     if (response.data.success) {
       toast.success("Thought created!");
-      console.log(response.data);
+
+      setTimeout(() => {
+        router.push("/");
+      }, 800);
       return;
     }
 

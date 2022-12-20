@@ -19,14 +19,12 @@ const RelatedThoughts: React.FC<RelatedThoughtsProps> = ({
   thoughtTag,
 }) => {
   const [relatedThoughts, setRelatedThoughts] = useState<JSX.Element[]>();
-  const { data, error }: { data: IThought[]; error: any } = useSWR(
+  const { data }: { data: IThought[]; error: any } = useSWR(
     ["/api/getRelatedThoughts", excludedThoughtId],
     ([url, excludedThoughtId]) => fetcher(url, excludedThoughtId)
   );
 
-  // TODO: extract to a custom hook
   useEffect(() => {
-    console.log("effect ran");
     if (data) {
       setRelatedThoughts(
         data

@@ -17,6 +17,7 @@ import {
   IconBrandMongodb,
   IconBrandPrisma,
 } from "@tabler/icons";
+import { Analytics } from "@vercel/analytics/react";
 
 const swapProps: SwapProps = {
   rotate: true,
@@ -33,89 +34,94 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   return (
-    <Theme dataTheme={`${isDarkMode ? "dark" : "light"}`}>
-      <main className="min-h-screen font-NunitoSans flex flex-col ">
-        {/* global navbar */}
-        <Navbar className="flex justify-between">
-          <section className="md:ml-auto">
-            <Button
-              className="text-xl normal-case"
-              color="ghost"
-              onClick={handleOnNavbarButtonClick}
-            >
-              Thoughts Board
-            </Button>
-          </section>
-          <section className="md:mr-auto">
-            <Swap
-              {...swapProps}
-              active={isDarkMode}
-              onClick={() => setIsDarkMode((prevActive) => !prevActive)}
-            ></Swap>
-          </section>
-        </Navbar>
-        {/* main content */}
-        <Component {...pageProps} />
-        {/* global footer */}
-        <Footer className="p-5 mt-auto bg-neutral text-neutral-content">
-          <section className="h-full flex items-center">
-            <section className="flex items-center">
+    <>
+      <Theme dataTheme={`${isDarkMode ? "dark" : "light"}`}>
+        <main className="min-h-screen font-NunitoSans flex flex-col ">
+          {/* global navbar */}
+          <Navbar className="flex justify-between">
+            <section className="md:ml-auto">
               <Button
-                onClick={() =>
-                  router.push("https://github.com/Jiseeeh/thoughts-board-v3")
-                }
+                className="text-xl normal-case"
+                color="ghost"
+                onClick={handleOnNavbarButtonClick}
               >
-                <IconBrandGithub />
+                Thoughts Board
               </Button>
-              <Button
-                onClick={() =>
-                  router.push("https://www.linkedin.com/in/john-carlo-camara/")
-                }
-              >
-                <IconBrandLinkedin />
-              </Button>
-              <span className="font-bold">
-                Made by &lt;Jiseeeh&nbsp;&#47;&gt;{" "}
-              </span>
             </section>
-          </section>
-          <section>
-            <Footer.Title>Tech used</Footer.Title>
-            <article className="flex flex-col">
-              <section className="flex">
-                <span>Next.js &nbsp;</span>
-                <IconBrandNextjs />
+            <section className="md:mr-auto">
+              <Swap
+                {...swapProps}
+                active={isDarkMode}
+                onClick={() => setIsDarkMode((prevActive) => !prevActive)}
+              ></Swap>
+            </section>
+          </Navbar>
+          {/* main content */}
+          <Component {...pageProps} />
+          {/* global footer */}
+          <Footer className="p-5 mt-auto bg-neutral text-neutral-content">
+            <section className="h-full flex items-center">
+              <section className="flex items-center">
+                <Button
+                  onClick={() =>
+                    router.push("https://github.com/Jiseeeh/thoughts-board-v3")
+                  }
+                >
+                  <IconBrandGithub />
+                </Button>
+                <Button
+                  onClick={() =>
+                    router.push(
+                      "https://www.linkedin.com/in/john-carlo-camara/"
+                    )
+                  }
+                >
+                  <IconBrandLinkedin />
+                </Button>
+                <span className="font-bold">
+                  Made by &lt;Jiseeeh&nbsp;&#47;&gt;{" "}
+                </span>
               </section>
-              <section className="flex">
-                <span>Tailwindcss &nbsp;</span>
-                <IconBrandTailwind />
-              </section>
-              <section className="flex">
-                <span>MongoDB &nbsp;</span>
-                <IconBrandMongodb />
-              </section>
-              <section className="flex">
-                <span>Prisma &nbsp;</span>
-                <IconBrandPrisma />
-              </section>
-              <section className="flex">
-                <span>React-DaisyUI &nbsp;</span>
-                <IconFlower />
-              </section>
-            </article>
-          </section>
-        </Footer>
-        <Toaster />
-        <ScrollToTop
-          smooth
-          component={<IconArrowUp />}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        />
-      </main>
-    </Theme>
+            </section>
+            <section>
+              <Footer.Title>Tech used</Footer.Title>
+              <article className="flex flex-col">
+                <section className="flex">
+                  <span>Next.js &nbsp;</span>
+                  <IconBrandNextjs />
+                </section>
+                <section className="flex">
+                  <span>Tailwindcss &nbsp;</span>
+                  <IconBrandTailwind />
+                </section>
+                <section className="flex">
+                  <span>MongoDB &nbsp;</span>
+                  <IconBrandMongodb />
+                </section>
+                <section className="flex">
+                  <span>Prisma &nbsp;</span>
+                  <IconBrandPrisma />
+                </section>
+                <section className="flex">
+                  <span>React-DaisyUI &nbsp;</span>
+                  <IconFlower />
+                </section>
+              </article>
+            </section>
+          </Footer>
+          <Toaster />
+          <ScrollToTop
+            smooth
+            component={<IconArrowUp />}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          />
+        </main>
+      </Theme>
+      <Analytics />
+    </>
   );
 }
